@@ -1,5 +1,6 @@
 from django.conf import settings
 
+
 def receive_order_placed(sender, order, user, **kwargs):
     authorisation_required = False
     for line in order.lines.all():
