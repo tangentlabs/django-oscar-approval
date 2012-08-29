@@ -25,7 +25,7 @@ class ApproverManagementView(generic.ListView):
                 return self.model.objects.none()
 
             qs = (self.model.objects.all()
-                        .select_related(settings.PROFILE_USER_RELATED_NAME))
+                        .select_related('user'))
 
             if cd['email']:
                 qs = qs.filter(user__email__startswith=cd['email'])
@@ -44,9 +44,8 @@ class ApproverManagementView(generic.ListView):
         ctx = super(ApproverManagementView, self).get_context_data(*args, 
                                                                    **kwargs)
         ctx['form'] = getattr(self, 'form', None) or self.form_class()
-        ctx['profile_user_related_name'] = settings.PROFILE_USER_RELATED_NAME
         ctx['approvers'] = (self.model.objects.filter(is_order_approver=True)
-                                    .select_related(settings.PROFILE_USER_RELATED_NAME))
+                                    .select_related('user'))
         return ctx
 
     def get(self, request, *args, **kwargs):

@@ -1,6 +1,5 @@
 {% extends 'dashboard/layout.html' %}
 {% load dashboard_tags %}
-{% load approval_filters %}
 {% load i18n %}
 
 {% block title %}
@@ -49,11 +48,11 @@
         </tr>
         {% for profile in object_list %}
         <tr>
-            <td>{{ profile|user_from_profile:"email" }}</td>
-            <td>{{ profile|user_from_profile:"first_name" }}</td>
-            <td>{{ profile|user_from_profile:"last_name" }}</td>
-            <td>{{ profile|user_from_profile:"is_active" }}</td>
-            <td>{{ profile|user_from_profile:"is_staff" }}</td>
+            <td>{{ profile.user.email }}</td>
+            <td>{{ profile.user.first_name }}</td>
+            <td>{{ profile.user.last_name }}</td>
+            <td>{{ profile.user.is_active }}</td>
+            <td>{{ profile.user.is_staff }}</td>
             <td>{{ profile.is_order_approver }}</td>
             <td>
                 <form action="{% if profile.is_order_approver %}{% url approver-remove profile.pk %}{% else %}{% url approver-add profile.pk %}{% endif %}" method="post" class="form-inline">
@@ -90,11 +89,11 @@
     </tr>
     {% for profile in approvers %}
     <tr>
-        <td>{{ profile|user_from_profile:"email" }}</td>
-        <td>{{ profile|user_from_profile:"first_name" }}</td>
-        <td>{{ profile|user_from_profile:"last_name" }}</td>
-        <td>{{ profile|user_from_profile:"is_active" }}</td>
-        <td>{{ profile|user_from_profile:"is_staff" }}</td>
+        <td>{{ profile.user.email }}</td>
+        <td>{{ profile.user.first_name }}</td>
+        <td>{{ profile.user.last_name }}</td>
+        <td>{{ profile.user.is_active }}</td>
+        <td>{{ profile.user.is_staff }}</td>
         <td>{{ profile.is_order_approver }}</td>
         <td>
             <form action="{% if profile.is_order_approver %}{% url approver-remove profile.pk %}{% else %}{% url approver-add profile.pk %}{% endif %}" method="post" class="form-inline">

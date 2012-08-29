@@ -23,8 +23,6 @@ Edit your ``settings.py`` to set the following settings (example)::
     OSCAR_LINE_APPROVAL_STATUS = statuses.PENDING_AUTHORISATION
     OSCAR_ORDER_APPROVAL_STATUS = statuses.PENDING_AUTHORISATION
 
-    PROFILE_USER_RELATED_NAME = 'user'
-
 Include approval urls in your application::
     
     from oscar_approval import urls as approval_urls
