@@ -1,8 +1,7 @@
 from django.db.models import get_model
 
-from oscar_approval.apps.approval.models import APPROVE, REJECT
-
-OrderLineApprovalLog = get_model('approval', 'OrderLineApprovalLog')
+from oscar_approval.apps.approval.models import (OrderLineApprovalLog,
+                                                 APPROVE, REJECT)
 
 
 def receive_order_line_approved(sender, line, user, **kwargs):
