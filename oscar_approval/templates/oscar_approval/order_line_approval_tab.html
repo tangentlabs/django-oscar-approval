@@ -11,7 +11,7 @@
     {% endblocktrans %}
 
     <div class="form-actions">
-        <a href="{% url order-line-approval-list %}" class="btn btn-primary">{% trans 'View approval list' %}</a>
+        <a href="{% url approval:order-line-approval-list %}" class="btn btn-primary">{% trans 'View approval list' %}</a>
     </div>
 
 {% else %}

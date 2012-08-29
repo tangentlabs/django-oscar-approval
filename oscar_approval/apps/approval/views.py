@@ -30,7 +30,7 @@ class OrderLineApproveView(generic.UpdateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('order-line-approval-list')
+        return reverse('approval:order-line-approval-list')
 
 
 class OrderLineRejectView(generic.UpdateView):
@@ -44,4 +44,4 @@ class OrderLineRejectView(generic.UpdateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('order-line-approval-list')
+        return reverse('approval:order-line-approval-list')

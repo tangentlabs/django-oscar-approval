@@ -45,11 +45,11 @@
         {% block additional_columns %}
         {% endblock %}
         <td>
-            <form action="{% url order-line-approve object.pk %}" method="post">
+            <form action="{% url approval:order-line-approve object.pk %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-success">{% trans 'Approve' %}</button>
             </form>
-            <form action="{% url order-line-reject object.pk %}" method="post">
+            <form action="{% url approval:order-line-reject object.pk %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-success">{% trans 'Reject' %}</button>
             </form>
