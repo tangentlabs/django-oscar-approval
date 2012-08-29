@@ -1,18 +1,22 @@
 from django.conf.urls.defaults import patterns, url
+from django.utils.translation import ugettext_lazy as _
 
 from oscar.core.application import Application
 from oscar.apps.dashboard.nav import register, Node
 
 from . import views
 
-node = Node('Approval', 'approver-management')
-register(node, 100)
+node = Node(_('Approval'))
+node.add_child(Node(_('Approver management'), 'approver-management'))
+node.add_child(Node(_('Event log'), 'approval-event-log'))
+register(node, 150)
 
 
 class ApprovalDashboardApplication(Application):
     name = None
     approvers_view = views.ApproverManagementView
     approver_update_view = views.ApproverUpdateView
+    event_log_view = views.EventLogView
 
     def get_urls(self):
         urlpatterns = patterns('',
@@ -26,6 +30,9 @@ class ApprovalDashboardApplication(Application):
                 self.approver_update_view.as_view(),
                 name='approver-remove',
                 kwargs={'is_approver': False}),
+            url(r'^event-log/$',
+                self.event_log_view.as_view(),
+                name='approval-event-log'),
         )
         return self.post_process_urls(urlpatterns)
 

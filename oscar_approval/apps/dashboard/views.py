@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 
 from oscar.apps.dashboard.users import forms
 
+from oscar_approval.apps.approval.models import OrderLineApprovalLog
+
 
 class ApproverManagementView(generic.ListView):
 
@@ -72,3 +74,10 @@ class ApproverUpdateView(generic.UpdateView):
 
     def get_success_url(self):
         return reverse('approver-management')
+
+
+class EventLogView(generic.ListView):
+    
+    model = OrderLineApprovalLog
+    template_name = 'oscar_approval/dashboard/event_log_list.html'
+    paginate_by = 20
