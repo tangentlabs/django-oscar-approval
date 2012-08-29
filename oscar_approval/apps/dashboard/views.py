@@ -81,3 +81,10 @@ class EventLogView(generic.ListView):
     model = OrderLineApprovalLog
     template_name = 'oscar_approval/dashboard/event_log_list.html'
     paginate_by = 20
+
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(EventLogView, self).get_queryset(*args, **kwargs)
+        qs = (qs.select_related('line__order__user', 'line__product', 'user')
+                .order_by('-event_date'))
+        return qs
