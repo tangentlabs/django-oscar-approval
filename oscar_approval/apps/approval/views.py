@@ -3,6 +3,8 @@ from django.db.models import get_model
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
 
 from . import signals
 
@@ -27,6 +29,7 @@ class OrderLineApproveView(generic.UpdateView):
         signals.order_line_approved.send(sender=self,
                                          line=self.get_object(),
                                          user=request.user)
+        messages.success(request, _('Line purchase has been approved.'))
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
@@ -41,6 +44,7 @@ class OrderLineRejectView(generic.UpdateView):
         signals.order_line_rejected.send(sender=self,
                                          line=self.get_object(),
                                          user=request.user)
+        messages.success(request, _('Line purchase has been rejected.'))
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):

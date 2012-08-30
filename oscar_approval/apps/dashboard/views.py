@@ -2,6 +2,8 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
 from django.db.models import Q, get_model
 from django.contrib.auth.models import User
 
@@ -69,7 +71,16 @@ class ApproverUpdateView(generic.UpdateView):
         profile.is_order_approver = is_approver
         profile.save()
 
+        messages.success(request, _(self.get_success_message(is_approver)))
+
         return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_message(self, is_approver):
+        if is_approver:
+            msg = 'Approver has been added.'
+        else:
+            msg = 'Approver has been removed.'
+        return msg
 
     def get_success_url(self):
         return reverse('approver-management')
