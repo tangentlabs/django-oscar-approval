@@ -25,6 +25,7 @@
     {% if object_list %}
     <table class="table table-striped table-bordered">
         <tr>
+            <th>{% trans "Order number" %}</th>
             <th>{% trans "Product" %}</th>
             <th>{% trans "Customer" %}</th>
             <th>{% trans "Approver" %}</th>
@@ -33,6 +34,7 @@
         </tr>
         {% for object in object_list %}
         <tr>
+            <td>{{ object.line.order.number }}</td>
             <td>{{ object.line.product.title }}</td>
             <td>{{ object.line.order.user.first_name }} {{ object.line.order.user.last_name }}</td>
             <td>{{ object.user.first_name }} {{ object.user.last_name }}</td>
