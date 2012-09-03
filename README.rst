@@ -25,9 +25,9 @@ Edit your ``settings.py`` to set the following settings (example)::
 
 Include approval urls in your application::
     
-    from oscar_approval import urls as approval_urls
+    from oscar_approval.apps.approval.app import application as approval_application
 
-    (r'^approval/', include(approval_urls)),
+    (r'^approval/', include(approval_application.urls)),
 
 
 Integration into the project
@@ -67,6 +67,6 @@ This receiver simply sets ``OSCAR_LINE_APPROVAL_STATUS`` and ``OSCAR_ORDER_APPRO
 
     Include dashboard application urls::
 
-        from oscar_approval.apps.dashboard.app import application as approval_application
+        from oscar_approval.apps.dashboard.app import application as approval_dashboard_application
 
-        (r'^dashboard/approval/', include(approval_application.urls))
+        (r'^dashboard/approval/', include(approval_dashboard_application.urls))
