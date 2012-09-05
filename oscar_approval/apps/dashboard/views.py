@@ -83,7 +83,7 @@ class ApproverUpdateView(generic.UpdateView):
         return msg
 
     def get_success_url(self):
-        return reverse('approver-management')
+        return reverse('dashboard:approver-management')
 
 
 class EventLogView(generic.ListView):

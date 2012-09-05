@@ -55,7 +55,7 @@
             <td>{{ profile.user.is_staff }}</td>
             <td>{{ profile.is_order_approver }}</td>
             <td>
-                <form action="{% if profile.is_order_approver %}{% url approver-remove profile.pk %}{% else %}{% url approver-add profile.pk %}{% endif %}" method="post" class="form-inline">
+                <form action="{% if profile.is_order_approver %}{% url dashboard:approver-remove profile.pk %}{% else %}{% url dashboard:approver-add profile.pk %}{% endif %}" method="post" class="form-inline">
                     {% csrf_token %}
                     {% if profile.is_order_approver %}
                         <input type="submit" value="{% trans "Remove reviewer" %}" class="btn btn-primary"/>
@@ -96,7 +96,7 @@
         <td>{{ profile.user.is_staff }}</td>
         <td>{{ profile.is_order_approver }}</td>
         <td>
-            <form action="{% if profile.is_order_approver %}{% url approver-remove profile.pk %}{% else %}{% url approver-add profile.pk %}{% endif %}" method="post" class="form-inline">
+            <form action="{% if profile.is_order_approver %}{% url dashboard:approver-remove profile.pk %}{% else %}{% url dashboard:approver-add profile.pk %}{% endif %}" method="post" class="form-inline">
                 {% csrf_token %}
                 {% if profile.is_order_approver %}
                     <input type="submit" value="{% trans "Remove reviewer" %}" class="btn btn-primary"/>

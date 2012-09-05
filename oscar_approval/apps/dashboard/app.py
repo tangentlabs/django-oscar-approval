@@ -7,8 +7,8 @@ from oscar.apps.dashboard.nav import register, Node
 from . import views
 
 node = Node(_('Approval'))
-node.add_child(Node(_('Approver management'), 'approver-management'))
-node.add_child(Node(_('Event log'), 'approval-event-log'))
+node.add_child(Node(_('Approver management'), 'dashboard:approver-management'))
+node.add_child(Node(_('Event log'), 'dashboard:approval-event-log'))
 register(node, 150)
 
 
