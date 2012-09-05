@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 
-from . import signals
+from . import signals, forms
 
 Line = get_model('order', 'Line')
 
@@ -14,12 +14,30 @@ Line = get_model('order', 'Line')
 class OrderLineApprovalListView(generic.ListView):
 
     template_name = 'oscar_approval/order_line_approval_list.html'
+    search_form_class = forms.ApprovalSearchForm
     model = Line
     paginate_by = 10
 
     def get_queryset(self):
-        return self.model.objects.filter(
+        qs = (self.model.objects.filter(
                     status=settings.OSCAR_LINE_APPROVAL_STATUS)
+                  .select_related('product'))
+
+        self.form = self.search_form_class(self.request.GET)
+        if not self.form.is_valid():
+            return qs
+
+        q = self.form.cleaned_data['query']
+        qs = qs.filter(product__title__icontains=q)
+
+        return qs
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(OrderLineApprovalListView, self).get_context_data(*args, 
+                                                                      **kwargs)
+        form = self.form if hasattr(self, 'form') else self.search_form()
+        ctx['form'] = form
+        return ctx
 
 
 class OrderLineApproveView(generic.UpdateView):
