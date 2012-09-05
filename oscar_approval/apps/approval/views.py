@@ -31,7 +31,7 @@ class OrderLineApprovalListView(generic.ListView):
 
         q = self.form.cleaned_data['query']
         if q:
-            qs = qs.filter(product__title__icontains=q)
+            qs = self.filter_by_text_query(q, qs)
 
         date_from = self.form.cleaned_data['date_from']
         if date_from:
@@ -41,6 +41,10 @@ class OrderLineApprovalListView(generic.ListView):
         if date_to:
             qs = qs.filter(order__date_placed__lt=date_to + timedelta(days=1))
 
+        return qs
+
+    def filter_by_text_query(self, query, qs):
+        qs = qs.filter(product__title__icontains=query)
         return qs
 
     def get_context_data(self, *args, **kwargs):
