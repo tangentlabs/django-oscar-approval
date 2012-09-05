@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.views import generic
 from django.db.models import get_model
 from django.conf import settings
@@ -28,7 +30,16 @@ class OrderLineApprovalListView(generic.ListView):
             return qs
 
         q = self.form.cleaned_data['query']
-        qs = qs.filter(product__title__icontains=q)
+        if q:
+            qs = qs.filter(product__title__icontains=q)
+
+        date_from = self.form.cleaned_data['date_from']
+        if date_from:
+            qs = qs.filter(order__date_placed__gte=date_from)
+
+        date_to = self.form.cleaned_data['date_to']
+        if date_to:
+            qs = qs.filter(order__date_placed__lt=date_to + timedelta(days=1))
 
         return qs
 
