@@ -21,10 +21,7 @@ class OrderLineApprovalListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        qs = (self.model.objects.filter(
-                    status=settings.OSCAR_LINE_APPROVAL_STATUS)
-                  .select_related('product', 'order')
-                  .order_by('-order__date_placed'))
+        qs = self.get_base_query_set()
 
         self.form = self.search_form_class(self.request.GET)
         if not self.form.is_valid():
@@ -44,12 +41,18 @@ class OrderLineApprovalListView(generic.ListView):
 
         return qs
 
+    def get_base_query_set(self):
+            return self.model.objects.filter(
+                    status=settings.OSCAR_LINE_APPROVAL_STATUS
+                ) .select_related('product', 'order'
+                ) .order_by('-order__date_placed')
+
     def filter_by_text_query(self, query, qs):
         qs = qs.filter(product__title__icontains=query)
         return qs
 
     def get_context_data(self, *args, **kwargs):
-        ctx = super(OrderLineApprovalListView, self).get_context_data(*args, 
+        ctx = super(OrderLineApprovalListView, self).get_context_data(*args,
                                                                       **kwargs)
         form = self.form if hasattr(self, 'form') else self.search_form()
         ctx['form'] = form
