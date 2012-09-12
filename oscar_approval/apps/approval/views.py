@@ -23,7 +23,8 @@ class OrderLineApprovalListView(generic.ListView):
     def get_queryset(self):
         qs = (self.model.objects.filter(
                     status=settings.OSCAR_LINE_APPROVAL_STATUS)
-                  .select_related('product'))
+                  .select_related('product', 'order')
+                  .order_by('-order__date_placed'))
 
         self.form = self.search_form_class(self.request.GET)
         if not self.form.is_valid():
