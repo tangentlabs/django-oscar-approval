@@ -38,33 +38,33 @@
 
 <table class="table table-striped table-bordered">
     <tr>
+        {% block table_headers %}
         <th>{% trans 'Order placed' %}</th>
         <th>{% trans 'Order number' %}</th>
         <th>{% trans 'Product' %}</th>
         <th>{% trans 'Ordered by' %}</th>
-        {% block additional_table_headers %}
         {% endblock %}
         <th></th>
     </tr>
 {% for object in object_list %}
     <tr>
+        {% block columns %}
         <td>{{ object.order.date_placed }}</td>
         <td>{{ object.order.number }}</td>
         <td>{{ object.product }}</td>
         <td>{{ object.order.user.first_name }} {{ object.order.user.last_name }}</td>
-        {% block additional_columns %}
         {% endblock %}
         <td>
-            <form action="{% url approval:order-line-approve object.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success">{% trans 'Approve' %}</button>
-            </form>
-            <form action="{% url approval:order-line-reject object.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success">{% trans 'Reject' %}</button>
-            </form>
-            {% block additional_action_buttons %}
-            {% endblock %}
+            {% block action_buttons %}
+                <form action="{% url approval:order-line-approve object.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">{% trans 'Approve' %}</button>
+                </form>
+                <form action="{% url approval:order-line-reject object.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">{% trans 'Reject' %}</button>
+                </form>
+            {% endblock action_buttons %}
         </td>
     </tr>
 {% endfor %}
