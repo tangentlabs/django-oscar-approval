@@ -1,13 +1,13 @@
 {% load i18n %}
 
 <div class="sub-header">
-    <h3>{% trans 'Authorization' %}</h3>
+    <h3>{% trans 'Authorisation' %}</h3>
 </div>
 {% if approval_item_number %}
     {% blocktrans count approval_item_number as num %}
-    There is {{ num }} item pending authorization.
+    There is {{ num }} item pending authorisation.
     {% plural %}
-    There are {{ num }} items pending authorization.
+    There are {{ num }} items pending authorisation.
     {% endblocktrans %}
 
     <div class="form-actions">
@@ -16,6 +16,6 @@
 
 {% else %}
     <p>
-        {% trans "There are no items pending authorization." %}
+        {% trans "There are no items pending authorisation." %}
     </p>
 {% endif %}

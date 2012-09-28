@@ -52,7 +52,7 @@ You may choose to integrate any of the following components:
 
 This receiver simply sets ``OSCAR_LINE_APPROVAL_STATUS`` and ``OSCAR_ORDER_APPROVAL_STATUS`` for lines and orders that require approval.
 
-3. Pin authorization tab in the user profile:
+3. Pin authorisation tab in the user profile:
     
     ...
 

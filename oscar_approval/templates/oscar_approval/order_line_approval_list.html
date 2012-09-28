@@ -11,12 +11,12 @@
         <a href="{% url customer:summary %}">{% trans 'Account' %}</a>
         <span class="divider">/</span>
     </li>
-    <li class="active"><a href=".">{% trans 'Authorization' %}</a></li>
+    <li class="active"><a href=".">{% trans 'Authorisation' %}</a></li>
 </ul>
 {% endblock %}
 
 {% block title %}
-{% trans 'Authorization' %} | {{ block.super }}
+{% trans 'Authorisation' %} | {{ block.super }}
 {% endblock %}
 
 {% block header %}
@@ -24,7 +24,7 @@
 
 {% block content %}
 <div class="generalbox">
-    <h1>Authorization</h1>
+    <h1>Authorisation</h1>
     {% block subpage_links %}
     {% endblock subpage_links %}
     {{ block.super }}
