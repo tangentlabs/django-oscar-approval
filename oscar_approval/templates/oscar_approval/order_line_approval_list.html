@@ -53,7 +53,7 @@
         {% block columns %}
         <td>{{ object.order.date_placed }}</td>
         <td>{{ object.order.number }}</td>
-        <td>{{ object.product }}</td>
+        <td>{% block product %}{{ object.product }}{% endblock product %}</td>
         <td>{{ object.order.user.first_name }} {{ object.order.user.last_name }}</td>
         {% endblock %}
         {% block table_actions_column %}
