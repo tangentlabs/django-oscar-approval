@@ -42,10 +42,10 @@ class OrderLineApprovalListView(generic.ListView):
         return qs
 
     def get_base_query_set(self):
-            return self.model.objects.filter(
-                    status=settings.OSCAR_LINE_APPROVAL_STATUS
-                ) .select_related('product', 'order'
-                ) .order_by('-order__date_placed')
+        return self.model.objects.filter(
+            status=settings.OSCAR_LINE_APPROVAL_STATUS) \
+            .select_related('product', 'order') \
+            .order_by('-order__date_placed')
 
     def filter_by_text_query(self, query, qs):
         qs = qs.filter(product__title__icontains=query)
