@@ -72,3 +72,16 @@ This receiver simply sets ``OSCAR_LINE_APPROVAL_STATUS`` and ``OSCAR_ORDER_APPRO
         from oscar_approval.apps.dashboard.app import application as approval_dashboard_application
 
         (r'^dashboard/approval/', include(approval_dashboard_application.urls))
+
+Development
+-----------
+
+There is a testing sandbox site, which can be created by running::
+
+    make sandbox
+
+A superuser is created with creds::
+
+    username: superuser
+    email: superuser@example.com
+    password: testing
