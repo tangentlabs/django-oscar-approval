@@ -1,7 +1,8 @@
-django-oscar-approval
-=====================
+========================
+Order approval for Oscar
+========================
 
-Order/Product approval extension for Django Oscar
+This package provides order/product approval functionality for Oscar.
 
 
 Getting started
@@ -14,6 +15,7 @@ Add ``'oscar_approval'`` to ``INSTALLED_APPS`` and run::
 
     ./manage.py syncdb
 
+to create the new database tables.
 
 Configuration
 --------------
@@ -32,6 +34,7 @@ Include approval urls in your application::
 
 Integration into the project
 -----------------------------
+
 You may choose to integrate any of the following components:
 
 1. Product model extension::
@@ -56,16 +59,15 @@ This receiver simply sets ``OSCAR_LINE_APPROVAL_STATUS`` and ``OSCAR_ORDER_APPRO
     
     ...
 
-4. Dashboard application for managing reviewers and viewing approval event logs:
-
-    Extend user profile::
+4. Dashboard application for managing reviewers and viewing approval event logs
+   Extend user profile::
 
         from oscar_approval.apps.customer.abstract_models import AbstractProfile as ApproverProfile
 
         class Profile(ApproverProfile):
             ...
 
-    Include dashboard application urls::
+   Include dashboard application urls::
 
         from oscar_approval.apps.dashboard.app import application as approval_dashboard_application
 
