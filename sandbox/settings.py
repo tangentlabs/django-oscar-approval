@@ -208,7 +208,6 @@ DEBUG_TOOLBAR_CONFIG = {
 # Oscar settings
 from oscar.defaults import *
 
-
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
@@ -219,6 +218,10 @@ USE_TZ = True
 
 # Approval settings
 APPROVAL_ACCESS_CONTROL_FUNCTION = lambda u: u.is_superuser
+
+OSCAR_LINE_APPROVAL_STATUS = 'Pending auth'
+OSCAR_ORDER_APPROVAL_STATUS = 'Pending auth'
+
 try:
     from settings_local import *
 except ImportError:
