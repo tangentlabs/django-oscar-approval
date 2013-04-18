@@ -217,6 +217,8 @@ HAYSTACK_CONNECTIONS = {
 
 USE_TZ = True
 
+# Approval settings
+APPROVAL_ACCESS_CONTROL_FUNCTION = lambda u: u.is_superuser
 try:
     from settings_local import *
 except ImportError:
