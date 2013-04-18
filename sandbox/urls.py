@@ -12,7 +12,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-    (r'^approval/', include(approval_app.urls)),
+    (r'^account/approval/', include(approval_app.urls)),
     (r'', include(oscar_app.urls)),
 )
 if settings.DEBUG:
