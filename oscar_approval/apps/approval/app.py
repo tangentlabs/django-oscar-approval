@@ -13,13 +13,13 @@ class ApprovalApplication(Application):
 
     def get_urls(self):
         urlpatterns = patterns('',
-            url(r'^order-line/list/$',
+            url(r'^order-lines/$',
                 self.approval_list_view.as_view(),
                 name='order-line-approval-list'),
-            url(r'^order-line/(?P<pk>\d+)/approve/$',
+            url(r'^order-lines/(?P<pk>\d+)/approve/$',
                 self.approve_view.as_view(),
                 name='order-line-approve'),
-            url(r'^order-line/(?P<pk>\d+)/reject/$',
+            url(r'^order-lines/(?P<pk>\d+)/reject/$',
                 self.reject_view.as_view(),
                 name='order-line-reject'),
         )
