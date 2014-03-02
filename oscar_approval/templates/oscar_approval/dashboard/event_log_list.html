@@ -44,10 +44,6 @@
         {% endfor %}
     </table>
 
-    {% if page_obj %}
-        {% include "catalogue/partials/pagination.html" %}
-    {% endif %}
-
     {% else %}
 
     <p>{% trans "There are currently no approval event logs." %}</p>
