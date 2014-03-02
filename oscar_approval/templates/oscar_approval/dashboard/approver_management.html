@@ -9,7 +9,7 @@
 {% block breadcrumbs %}
 <ul class="breadcrumb">
     <li>
-    <a href="{% url dashboard:index %}">{% trans "Dashboard" %}</a>
+    <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
         <span class="divider">/</span>
     </li>
     <li class="active"><a href=".">{% trans "Approvers" %}</a></li>
@@ -28,7 +28,7 @@
     <form action="." method="get" class="form-inline">
         {% include "partials/form_fields_inline.html" with form=form %}
         <input type="submit" value="{% trans "Search" %}" class="btn btn-primary"/>
-        <a href="{% url dashboard:users-index %}" class="btn">{% trans "Reset" %}</a>
+        <a href="{% url 'dashboard:users-index' %}" class="btn">{% trans "Reset" %}</a>
     </form>
 </div>
 {% if form.is_bound %}
@@ -55,7 +55,7 @@
             <td>{{ profile.user.is_staff }}</td>
             <td>{{ profile.is_order_approver }}</td>
             <td>
-                <form action="{% if profile.is_order_approver %}{% url dashboard:approver-remove profile.pk %}{% else %}{% url dashboard:approver-add profile.pk %}{% endif %}" method="post" class="form-inline">
+                <form action="{% if profile.is_order_approver %}{% url 'dashboard:approver-remove' profile.pk %}{% else %}{% url 'dashboard:approver-add' profile.pk %}{% endif %}" method="post" class="form-inline">
                     {% csrf_token %}
                     {% if profile.is_order_approver %}
                         <input type="submit" value="{% trans "Remove reviewer" %}" class="btn btn-primary"/>
@@ -96,7 +96,7 @@
         <td>{{ profile.user.is_staff }}</td>
         <td>{{ profile.is_order_approver }}</td>
         <td>
-            <form action="{% if profile.is_order_approver %}{% url dashboard:approver-remove profile.pk %}{% else %}{% url dashboard:approver-add profile.pk %}{% endif %}" method="post" class="form-inline">
+            <form action="{% if profile.is_order_approver %}{% url 'dashboard:approver-remove' profile.pk %}{% else %}{% url 'dashboard:approver-add' profile.pk %}{% endif %}" method="post" class="form-inline">
                 {% csrf_token %}
                 {% if profile.is_order_approver %}
                     <input type="submit" value="{% trans "Remove reviewer" %}" class="btn btn-primary"/>
