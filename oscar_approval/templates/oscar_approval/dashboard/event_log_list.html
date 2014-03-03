@@ -8,7 +8,7 @@
 {% block breadcrumbs %}
 <ul class="breadcrumb">
     <li>
-    <a href="{% url dashboard:index %}">{% trans "Dashboard" %}</a>
+    <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
         <span class="divider">/</span>
     </li>
     <li class="active"><a href=".">{% trans "Approval event log" %}</a></li>
@@ -43,10 +43,6 @@
         </tr>
         {% endfor %}
     </table>
-
-    {% if page_obj %}
-        {% include "catalogue/partials/pagination.html" %}
-    {% endif %}
 
     {% else %}
 

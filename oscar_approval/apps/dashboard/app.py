@@ -1,16 +1,10 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 from django.utils.translation import ugettext_lazy as _
 
 from oscar.core.application import Application
-from oscar.apps.dashboard.nav import register, Node
+from oscar.views.decorators import staff_member_required
 
 from . import views
-
-node = Node(_('Approval'))
-node.add_child(Node(_('Approver management'), 'dashboard:approver-management'))
-node.add_child(Node(_('Event log'), 'dashboard:approval-event-log'))
-register(node, 150)
-
 
 class ApprovalDashboardApplication(Application):
     name = None
@@ -36,5 +30,7 @@ class ApprovalDashboardApplication(Application):
         )
         return self.post_process_urls(urlpatterns)
 
+    def get_url_decorator(self, url_name):
+        return staff_member_required
 
 application = ApprovalDashboardApplication()

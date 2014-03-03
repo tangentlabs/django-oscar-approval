@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Q, get_model
-from django.contrib.auth.models import User
+from oscar.core.compat import get_user_model
 
 from oscar.apps.dashboard.users import forms
 
@@ -15,7 +15,7 @@ from oscar_approval.apps.approval.models import OrderLineApprovalLog
 class ApproverManagementView(generic.ListView):
 
     template_name = 'oscar_approval/dashboard/approver_management.html'
-    model = get_model(*settings.AUTH_PROFILE_MODULE.rsplit('.', 1))
+    model = get_user_model()
     form_class = forms.UserSearchForm
 
     def get_queryset(self):
@@ -62,7 +62,7 @@ class ApproverManagementView(generic.ListView):
 
 class ApproverUpdateView(generic.UpdateView):
 
-    model = get_model(*settings.AUTH_PROFILE_MODULE.rsplit('.', 1))
+    model = get_user_model()
 
     def post(self, request, *args, **kwargs):
         is_approver = bool(kwargs['is_approver'])
