@@ -14,6 +14,8 @@ Add ``'oscar_approval'`` to ``INSTALLED_APPS`` and run::
 
     ./manage.py syncdb
 
+Note that tag 0.1 is the last one to work with Oscar 0.4 - after that Oscar 0.6 is assumed
+
 
 Configuration
 --------------
