@@ -24,7 +24,7 @@ Edit your ``settings.py`` to set the following settings (example)::
     OSCAR_ORDER_APPROVAL_STATUS = statuses.PENDING_AUTHORISATION
 
 Include approval urls in your application::
-    
+
     from oscar_approval.apps.approval.app import application as approval_application
 
     (r'^approval/', include(approval_application.urls)),
@@ -53,7 +53,7 @@ You may choose to integrate any of the following components:
 This receiver simply sets ``OSCAR_LINE_APPROVAL_STATUS`` and ``OSCAR_ORDER_APPROVAL_STATUS`` for lines and orders that require approval.
 
 3. Pin authorisation tab in the user profile:
-    
+
     ...
 
 4. Dashboard application for managing reviewers and viewing approval event logs:
