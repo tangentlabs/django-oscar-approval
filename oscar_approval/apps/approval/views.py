@@ -15,7 +15,7 @@ Line = get_model('order', 'Line')
 
 class OrderLineApprovalListView(generic.ListView):
 
-    template_name = 'oscar_approval/order_line_approval_list.html'
+    template_name = 'order_line_approval_list.html'
     search_form_class = forms.ApprovalSearchForm
     model = Line
     paginate_by = 10

@@ -14,7 +14,7 @@ from oscar_approval.apps.approval.models import OrderLineApprovalLog
 
 class ApproverManagementView(generic.ListView):
 
-    template_name = 'oscar_approval/dashboard/approver_management.html'
+    template_name = 'dashboard/approver_management.html'
     model = get_model(*settings.AUTH_PROFILE_MODULE.rsplit('.', 1))
     form_class = forms.UserSearchForm
 
@@ -89,7 +89,7 @@ class ApproverUpdateView(generic.UpdateView):
 class EventLogView(generic.ListView):
     
     model = OrderLineApprovalLog
-    template_name = 'oscar_approval/dashboard/event_log_list.html'
+    template_name = 'dashboard/event_log_list.html'
     paginate_by = 20
 
 
